@@ -1,0 +1,6 @@
+{
+  "name": "OptiWebP — Client-Side WebP Converter",
+  "description": "High-fidelity client-side WebP converter with free downloadable WordPress plugin for bulk media optimization and Web3 IPFS export. 100% private with smart auto compression.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

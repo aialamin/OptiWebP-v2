@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>OptiWebP — Client-Side WebP Converter & Image SEO Optimizer</title>
+    <meta
+      name="description"
+      content="Convert PNG and JPEG to high-fidelity WebP client-side with zero cloud uploads. Includes free WordPress plugin, Gemini AI SEO alt-tag generator, and IPFS export."
+    />
+    <meta
+      name="keywords"
+      content="webp converter, image optimizer, client-side webp, wordpress webp plugin, image seo, alt text generator, squoosh alternative, tinypng alternative, core web vitals lcp, web3 ipfs image"
+    />
+    <meta name="author" content="Al Amin Hossain" />
+    <meta name="creator" content="Al Amin Hossain" />
+    <meta name="publisher" content="Al Amin Hossain" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://optiwebp.app/" />
+    <meta name="theme-color" content="#0c0e12" />
+
+    <!-- OpenGraph Social Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://optiwebp.app/" />
+    <meta property="og:title" content="OptiWebP — Client-Side WebP Converter & Image SEO Optimizer" />
+    <meta
+      property="og:description"
+      content="Convert images to high-fidelity WebP client-side with zero cloud uploads. Free WordPress plugin, Gemini AI SEO alt-tag generator, and Web3 IPFS export. Built by Al Amin Hossain."
+    />
+    <meta property="og:site_name" content="OptiWebP" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@aialamin" />
+    <meta name="twitter:title" content="OptiWebP — Client-Side WebP Converter & Image SEO" />
+    <meta
+      name="twitter:description"
+      content="Convert images to high-fidelity WebP client-side with zero cloud uploads. Free WordPress plugin, AI SEO alt tags, and Web3 IPFS export. By Al Amin Hossain."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f172a'/%3E%3Cpolygon points='16,5 27,11 27,21 16,27 5,21 5,11' fill='none' stroke='%2310b981' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M11,13 L16,21 L21,13' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+
+    <!-- Typography Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org Structured Data (JSON-LD) for WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://optiwebp.app/#webapp",
+          "name": "OptiWebP",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "description": "High-fidelity client-side WebP image converter with off-thread decoding, free WordPress plugin for media libraries, Gemini AI image SEO alt text generator, and Web3 IPFS export.",
+          "url": "https://optiwebp.app",
+          "author": {
+            "@type": "Person",
+            "name": "Al Amin Hossain",
+            "jobTitle": "Software Engineer",
+            "url": "https://github.com/aialamin",
+            "sameAs": [
+              "https://github.com/aialamin"
+            ]
+          },
+          "creator": {
+            "@type": "Person",
+            "name": "Al Amin Hossain",
+            "jobTitle": "Software Engineer",
+            "url": "https://github.com/aialamin"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "100% Client-Side In-Browser Conversion (Zero Server Uploads)",
+            "Concurrent Batch Image Processing with createImageBitmap Off-Thread Decoding",
+            "Interactive Before/After Split-Slider Quality Comparison",
+            "Free Downloadable WordPress Image Optimizer Plugin & Server Rewrite Snippet",
+            "Google Gemini AI Alt Text, Title & SEO Filename Assistant",
+            "Web3 Wallet Connection & IPFS Metadata CID Export",
+            "Core Web Vitals LCP and Bandwidth Savings Estimator",
+            "Batch ZIP Archive Generation"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://optiwebp.app/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Why does Google recommend WebP for SEO and Core Web Vitals?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Google Lighthouse and PageSpeed Insights explicitly recommend next-gen formats like WebP because they achieve 26% to 34% smaller file sizes than JPEG at identical visual quality. Lighter images directly improve Largest Contentful Paint (LCP), a core ranking factor in Google Search mobile indexation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does OptiWebP compare to TinyPNG and Squoosh?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Unlike TinyPNG and ShortPixel which upload images to cloud servers and charge monthly subscriptions, OptiWebP runs 100% locally in your browser. Unlike Squoosh which only processes one image at a time, OptiWebP batch-processes hundreds of files concurrently off-thread, includes a free WordPress plugin, and generates AI alt-text."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are my images ever uploaded to a remote server or cloud?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Your images never leave your computer. All decoding, compression, and WebP encoding occur entirely inside your browser using HTML5 Canvas & WebAssembly APIs. This guarantees 100% privacy for confidential files, NDA brand assets, and personal photos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does the AI Image SEO Assistant boost Google Image Search traffic?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Search engine crawlers rely on semantic Alt Text, descriptive file names, and contextual captions to index images. OptiWebP integrates Google Gemini AI to inspect your photos and formulate accessibility-compliant alt attributes, SEO-focused titles, and hyphenated crawl-friendly file names."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does the free OptiWebP WordPress plugin work without API keys?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The OptiWebP plugin is a free, self-contained PHP helper that integrates with WordPress upload hooks and delivers clean HTML5 <picture> fallbacks with automated WebP conversion on upload, without monthly quotas, API keys, or subscription fees."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://optiwebp.app/#howto",
+          "name": "How to Convert Images to WebP Client-Side with OptiWebP",
+          "description": "Step-by-step guide to converting PNG and JPEG photos to lightweight WebP files in your browser with zero server uploads.",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "Upload or Drag Images",
+              "text": "Drag and drop PNG, JPG, or AVIF files into the OptiWebP drop zone or click Browse to select files from your computer."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Choose Compression Preset",
+              "text": "Select from Smart Auto (Google-calibrated 82% quality), High Fidelity, Balanced, or Maximum Compression, or set a custom quality slider."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Inspect Quality & Generate AI SEO",
+              "text": "Use the real-time split comparison slider to inspect visual fidelity, and click AI SEO to generate alt-text, titles, and crawl-friendly file names."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Download Single WebP or Batch ZIP",
+              "text": "Click Download on individual files or download all converted images in a single ZIP archive."
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Prevent Dark Mode Flash -->
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('optiwebp_theme');
+          var supportDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (theme === 'dark' || (!theme && supportDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#fafafa] dark:bg-[#0c0e12] text-neutral-900 dark:text-neutral-100 antialiased min-h-screen selection:bg-neutral-900 selection:text-white dark:selection:bg-neutral-100 dark:selection:text-neutral-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
