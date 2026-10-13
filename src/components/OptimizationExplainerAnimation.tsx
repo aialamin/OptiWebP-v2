@@ -67,7 +67,6 @@ const STAGES: StageInfo[] = [
 export const OptimizationExplainerAnimation: React.FC = () => {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [stageProgress, setStageProgress] = useState(0); // 0 to 100% within current stage
   const [selectedPreset, setSelectedPreset] = useState<'photo' | 'transparent'>('photo');
   const [qualitySlider, setQualitySlider] = useState(85);
   const [sliderPosition, setSliderPosition] = useState(50); // Split slider 0 to 100%
@@ -101,33 +100,48 @@ export const OptimizationExplainerAnimation: React.FC = () => {
     return () => ro.disconnect();
   }, []);
 
-  // Butter-smooth 60fps timer loop for stage progression
+  const stepButtonProgressRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Butter-smooth 60fps/120fps hardware-composited timer loop for stage progression
+  // Directly updates DOM styles on animation frames with zero lag or stutter
   useEffect(() => {
-    if (!isPlaying || isHovered) return;
+    // Reset/synchronize progress on all buttons according to activeStageIndex
+    stepButtonProgressRefs.current.forEach((el, idx) => {
+      if (!el) return;
+      if (idx < activeStageIndex) {
+        el.style.width = '100%';
+      } else if (idx > activeStageIndex) {
+        el.style.width = '0%';
+      }
+    });
 
-    let lastTime = performance.now();
+    if (!isPlaying) return;
+
+    let startTime = performance.now();
     let frameId: number;
-    const stageDurationMs = 5000; // 5 seconds per stage
+    const stageDurationMs = 4500; // 4.5 seconds per stage
 
-    const loop = (currentTime: number) => {
-      const delta = currentTime - lastTime;
-      lastTime = currentTime;
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / stageDurationMs);
 
-      setStageProgress((prev) => {
-        const next = prev + (delta / stageDurationMs) * 100;
-        if (next >= 100) {
-          setActiveStageIndex((curr) => (curr + 1) % STAGES.length);
-          return 0;
-        }
-        return next;
-      });
+      // Smoothly fill the active button's bottom line (0% -> 100%)
+      const activeBtnEl = stepButtonProgressRefs.current[activeStageIndex];
+      if (activeBtnEl) {
+        activeBtnEl.style.width = `${progress * 100}%`;
+      }
 
-      frameId = requestAnimationFrame(loop);
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick);
+      } else {
+        // Stage completed: advance to next stage smoothly
+        setActiveStageIndex((curr) => (curr + 1) % STAGES.length);
+      }
     };
 
-    frameId = requestAnimationFrame(loop);
+    frameId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frameId);
-  }, [isPlaying, isHovered, activeStageIndex]);
+  }, [isPlaying, activeStageIndex]);
 
   // Animated grid scan horizontal position
   useEffect(() => {
@@ -149,7 +163,6 @@ export const OptimizationExplainerAnimation: React.FC = () => {
 
   const handleSelectStage = (idx: number) => {
     setActiveStageIndex(idx);
-    setStageProgress(0);
   };
 
   return (
@@ -223,8 +236,8 @@ export const OptimizationExplainerAnimation: React.FC = () => {
         </div>
       </div>
 
-      {/* Stage Step Tabs with Smooth Green Progress Line Animation at Bottom */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 pb-6">
+      {/* Stage Step Tabs: Step 01 to 04 with sleek thin borders and smooth under-button progress indicator */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 pb-5 w-full">
         {STAGES.map((s, idx) => {
           const isActive = idx === activeStageIndex;
           const isDone = idx < activeStageIndex;
@@ -233,51 +246,48 @@ export const OptimizationExplainerAnimation: React.FC = () => {
             <button
               key={s.step}
               onClick={() => handleSelectStage(idx)}
-              className={`text-left p-3.5 sm:p-4 rounded-xl border transition-colors cursor-pointer relative overflow-hidden ${
+              className={`text-left p-3 sm:p-3.5 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden w-full ${
                 isActive
-                  ? 'bg-neutral-50 dark:bg-[#141822] border-emerald-500/80 dark:border-emerald-500/80 shadow-xs'
+                  ? 'bg-neutral-50/90 dark:bg-[#141822]/90 border-emerald-500/50 dark:border-emerald-500/50 shadow-xs'
                   : isDone
-                  ? 'bg-white dark:bg-[#11141b] border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700'
-                  : 'bg-white dark:bg-[#11141b] border-neutral-200 dark:border-neutral-800 opacity-70 hover:opacity-100 hover:border-neutral-300'
+                  ? 'bg-white dark:bg-[#11141b] border-neutral-200/70 dark:border-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700'
+                  : 'bg-white dark:bg-[#11141b] border-neutral-200/70 dark:border-neutral-800/80 opacity-75 hover:opacity-100 hover:border-neutral-300 dark:hover:border-neutral-700'
               }`}
             >
-              {/* Smooth Framer Motion active ring highlight */}
+              {/* Smooth thin active ring / accent */}
               {isActive && (
                 <motion.div
                   layoutId="activeStepGlow"
-                  className="absolute inset-0 rounded-xl ring-2 ring-emerald-500/40 pointer-events-none"
+                  className="absolute inset-0 rounded-xl ring-1 ring-emerald-500/30 pointer-events-none"
                   transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                 />
               )}
 
-              {/* Silky-smooth green progress line animation under button on Steps */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-neutral-200/50 dark:bg-neutral-800/80 overflow-hidden">
-                {isActive ? (
-                  <div
-                    className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-300 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
-                    style={{
-                      width: `${stageProgress}%`,
-                      transition: isPlaying ? 'width 100ms linear' : 'width 0.2s ease',
-                      willChange: 'width',
-                    }}
-                  />
-                ) : isDone ? (
-                  <div className="h-full w-full bg-emerald-500/70" />
-                ) : null}
+              {/* Ultra-smooth thin green progress line animation across full width of button bottom */}
+              <div className="absolute bottom-0 left-0 right-0 w-full h-[2px] bg-neutral-200/40 dark:bg-neutral-800/60 overflow-hidden">
+                <div
+                  ref={(el) => {
+                    stepButtonProgressRefs.current[idx] = el;
+                  }}
+                  className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.7)]"
+                  style={{
+                    width: idx < activeStageIndex ? '100%' : '0%',
+                  }}
+                />
               </div>
 
-              <div className="flex items-center justify-between gap-1 mb-1.5 relative z-10">
-                <span className="font-mono text-[10px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
+              <div className="flex items-center justify-between gap-1 mb-1 relative z-10">
+                <span className="font-mono text-[10px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
                   Step 0{s.step}
                 </span>
                 {isDone ? (
                   <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                 ) : isActive ? (
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10b981] shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10b981] shrink-0" />
                 ) : null}
               </div>
 
-              <div className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white truncate relative z-10">
+              <div className="text-xs sm:text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate relative z-10">
                 {s.title}
               </div>
             </button>
