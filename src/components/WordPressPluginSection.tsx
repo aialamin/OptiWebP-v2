@@ -536,77 +536,307 @@ add_action('send_headers', function() {
                     </div>
 
                     {/* Website Content */}
-                    <div className="p-3.5 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
-                      <div>
-                        <div className="flex items-center gap-2 text-[11px] sm:text-xs text-neutral-500 mb-1 font-mono">
-                          <span>Architecture & Interiors</span>
-                          <span>·</span>
-                          <span>October 2026</span>
+                    <div className="p-3.5 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
+                      {/* Website Top Header & Navigation Bar */}
+                      <div className="flex flex-wrap items-center justify-between pb-4 border-b border-neutral-100 dark:border-neutral-800/80 gap-3">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-xs shadow-xs">
+                            <span className="font-mono">LW</span>
+                          </div>
+                          <div>
+                            <div className="text-xs sm:text-sm font-bold text-neutral-900 dark:text-white leading-none">
+                              LUXE WAVE RESIDENCES
+                            </div>
+                            <div className="text-[10px] text-neutral-400 font-mono mt-0.5">
+                              Architectural Monograph · Vol. 28
+                            </div>
+                          </div>
                         </div>
-                        <h3 className="typespace-heading text-lg sm:text-2xl font-bold text-neutral-900 dark:text-white leading-tight">
-                          Modern Ocean Penthouse: Architectural Light & Form
-                        </h3>
-                      </div>
 
-                      {/* Featured Image with Live Format Badges */}
-                      <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
-                        <img
-                          key={`demo-img-${pluginWebpEnabled}-${loadKey}`}
-                          src={pluginWebpEnabled ? '/Optiweb.webp' : '/Optiweb.jpg'}
-                          alt="Modern coastal penthouse living room"
-                          className="w-full h-[220px] xs:h-[260px] sm:h-[380px] md:h-[420px] object-cover transition-all"
-                        />
-
-                        {/* Floating Verification HUD Overlay */}
-                        <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 flex flex-col xs:flex-row items-start xs:items-center gap-1.5 sm:gap-2 pointer-events-none">
-                          <div
-                            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono font-bold backdrop-blur-md shadow-md flex items-center gap-1.5 sm:gap-2 ${
+                        {/* Status Chip indicating site-wide WebP active */}
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-mono font-semibold transition-colors ${
                               pluginWebpEnabled
-                                ? 'bg-emerald-950/90 text-emerald-300 border border-emerald-500/50'
-                                : 'bg-neutral-950/90 text-amber-300 border border-amber-500/50'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
+                                : 'bg-amber-50 dark:bg-amber-950/70 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800'
                             }`}
                           >
                             <span
-                              className={`w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full animate-pulse ${
-                                pluginWebpEnabled ? 'bg-emerald-400' : 'bg-amber-400'
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                pluginWebpEnabled ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
                               }`}
                             />
                             <span>
                               {pluginWebpEnabled
-                                ? 'Delivering: Optiweb.webp (123 KB)'
-                                : 'Delivering: Optiweb.jpg (313 KB)'}
+                                ? 'OptiWebP Active: All 4 Images Serving as WebP'
+                                : 'OptiWebP Paused: Serving Legacy JPEGs'}
                             </span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Article Header */}
+                      <div>
+                        <div className="flex items-center gap-2 text-[11px] sm:text-xs text-neutral-500 mb-1.5 font-mono">
+                          <span>Architecture & Coastal Living</span>
+                          <span>·</span>
+                          <span>October 2026</span>
+                          <span>·</span>
+                          <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                            {pluginWebpEnabled ? 'High-Speed WebP Stream' : 'Standard Delivery'}
+                          </span>
+                        </div>
+                        <h3 className="typespace-heading text-lg sm:text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white leading-tight">
+                          Modern Ocean Penthouse: Architectural Light & Form
+                        </h3>
+                        <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl leading-relaxed">
+                          Unobstructed Atlantic horizons paired with custom cast concrete, terrazzo stone, and floor-to-ceiling glass.
+                        </p>
+                      </div>
+
+                      {/* 1. Main Featured Hero Image with Verification HUD */}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-xs text-neutral-500">
+                          <span className="font-semibold text-neutral-800 dark:text-neutral-200 flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                            Featured Master View (Living Pavilion)
+                          </span>
+                          <span className="font-mono text-[11px]">
+                            {pluginWebpEnabled ? 'Format: WEBP (VP8)' : 'Format: JPEG (Baseline)'}
+                          </span>
+                        </div>
+
+                        <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 group">
+                          <picture className="w-full h-full block">
+                            {pluginWebpEnabled && (
+                              <source srcSet="/Optiweb.webp" type="image/webp" />
+                            )}
+                            <img
+                              key={`demo-img-${pluginWebpEnabled}-${loadKey}`}
+                              src={pluginWebpEnabled ? '/Optiweb.webp' : '/Optiweb.jpg'}
+                              alt="Modern coastal penthouse living room"
+                              className="w-full h-[220px] xs:h-[260px] sm:h-[380px] md:h-[420px] object-cover transition-all"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </picture>
+
+                          {/* Floating Verification HUD Overlay */}
+                          <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 flex flex-col xs:flex-row items-start xs:items-center gap-1.5 sm:gap-2 pointer-events-none">
+                            <div
+                              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono font-bold backdrop-blur-md shadow-md flex items-center gap-1.5 sm:gap-2 ${
+                                pluginWebpEnabled
+                                  ? 'bg-emerald-950/90 text-emerald-300 border border-emerald-500/50'
+                                  : 'bg-neutral-950/90 text-amber-300 border border-amber-500/50'
+                              }`}
+                            >
+                              <span
+                                className={`w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full animate-pulse ${
+                                  pluginWebpEnabled ? 'bg-emerald-400' : 'bg-amber-400'
+                                }`}
+                              />
+                              <span>
+                                {pluginWebpEnabled
+                                  ? 'Delivering: Optiweb.webp (123 KB)'
+                                  : 'Delivering: Optiweb.jpg (313 KB)'}
+                              </span>
+                            </div>
+
+                            <div className="px-2 sm:px-2.5 py-0.5 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono bg-neutral-950/80 text-white backdrop-blur-md shadow-xs border border-neutral-700/60">
+                              {pluginWebpEnabled ? '60.7% Bandwidth Saved' : '0% Saved (Original)'}
+                            </div>
                           </div>
 
-                          <div className="px-2 sm:px-2.5 py-0.5 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono bg-neutral-950/80 text-white backdrop-blur-md shadow-xs border border-neutral-700/60">
-                            {pluginWebpEnabled ? '60.7% Bandwidth Saved' : '0% Saved (Original)'}
+                          <div className="absolute bottom-2.5 right-2.5 sm:bottom-4 sm:right-4 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono bg-black/80 text-white backdrop-blur-md border border-neutral-700/50">
+                            {pluginWebpEnabled ? (
+                              <span className="flex items-center gap-1.5 text-emerald-300 font-semibold">
+                                <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                                <span>3.7× Faster Transfer</span>
+                              </span>
+                            ) : (
+                              <span className="flex items-center gap-1.5 text-amber-300 font-semibold">
+                                <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                                <span>Uncompressed Payload</span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 2. Photo Gallery — Demonstrating WebP across ALL images on the website */}
+                      <div className="space-y-3 pt-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                          <h4 className="text-xs sm:text-sm font-bold text-neutral-900 dark:text-white flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
+                            <span>Curated Residence Photography (All Delivered as WebP)</span>
+                          </h4>
+                          <span className="text-[11px] font-mono text-neutral-500">
+                            Site-Wide Output Buffer · 100% Coverage
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                          {/* Gallery Photo 1 */}
+                          <div className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-850 overflow-hidden shadow-xs">
+                            <div className="relative h-40 xs:h-48 sm:h-36 overflow-hidden bg-neutral-900">
+                              <picture className="w-full h-full block">
+                                {pluginWebpEnabled && (
+                                  <source srcSet="/optiweb-preview.webp" type="image/webp" />
+                                )}
+                                <img
+                                  src={pluginWebpEnabled ? '/optiweb-preview.webp' : '/optiweb-preview.jpg'}
+                                  alt="Oceanfront Master Suite"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </picture>
+                              <div className="absolute top-2 left-2 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-950/80 text-white backdrop-blur-md border border-white/10">
+                                {pluginWebpEnabled ? (
+                                  <span className="text-emerald-400 flex items-center gap-1">
+                                    <Check className="w-3 h-3" />
+                                    WEBP (123 KB)
+                                  </span>
+                                ) : (
+                                  <span className="text-amber-400">JPEG (313 KB)</span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="p-3 space-y-1">
+                              <div className="text-xs font-semibold text-neutral-900 dark:text-white truncate">
+                                Oceanfront Master Suite
+                              </div>
+                              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+                                <span>1600 × 1067 px</span>
+                                <span className={pluginWebpEnabled ? 'text-emerald-600 dark:text-emerald-400 font-bold' : ''}>
+                                  {pluginWebpEnabled ? '-60.7% saved' : '0% saved'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Gallery Photo 2 */}
+                          <div className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-850 overflow-hidden shadow-xs">
+                            <div className="relative h-40 xs:h-48 sm:h-36 overflow-hidden bg-neutral-900">
+                              <picture className="w-full h-full block">
+                                {pluginWebpEnabled && (
+                                  <source srcSet="/Optiweb.webp" type="image/webp" />
+                                )}
+                                <img
+                                  src={pluginWebpEnabled ? '/Optiweb.webp' : '/Optiweb.jpg'}
+                                  alt="Minimalist Marble Kitchen & Island"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </picture>
+                              <div className="absolute top-2 left-2 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-950/80 text-white backdrop-blur-md border border-white/10">
+                                {pluginWebpEnabled ? (
+                                  <span className="text-emerald-400 flex items-center gap-1">
+                                    <Check className="w-3 h-3" />
+                                    WEBP (123 KB)
+                                  </span>
+                                ) : (
+                                  <span className="text-amber-400">JPEG (313 KB)</span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="p-3 space-y-1">
+                              <div className="text-xs font-semibold text-neutral-900 dark:text-white truncate">
+                                Marble Kitchen & Dining
+                              </div>
+                              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+                                <span>1600 × 1067 px</span>
+                                <span className={pluginWebpEnabled ? 'text-emerald-600 dark:text-emerald-400 font-bold' : ''}>
+                                  {pluginWebpEnabled ? '-60.7% saved' : '0% saved'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Gallery Photo 3 */}
+                          <div className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-850 overflow-hidden shadow-xs">
+                            <div className="relative h-40 xs:h-48 sm:h-36 overflow-hidden bg-neutral-900">
+                              <picture className="w-full h-full block">
+                                {pluginWebpEnabled && (
+                                  <source srcSet="/optiweb-preview.webp" type="image/webp" />
+                                )}
+                                <img
+                                  src={pluginWebpEnabled ? '/optiweb-preview.webp' : '/optiweb-preview.jpg'}
+                                  alt="Sunset Balcony & Horizon"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </picture>
+                              <div className="absolute top-2 left-2 px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-neutral-950/80 text-white backdrop-blur-md border border-white/10">
+                                {pluginWebpEnabled ? (
+                                  <span className="text-emerald-400 flex items-center gap-1">
+                                    <Check className="w-3 h-3" />
+                                    WEBP (123 KB)
+                                  </span>
+                                ) : (
+                                  <span className="text-amber-400">JPEG (313 KB)</span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="p-3 space-y-1">
+                              <div className="text-xs font-semibold text-neutral-900 dark:text-white truncate">
+                                Sunset Balcony & Lounge
+                              </div>
+                              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500">
+                                <span>1600 × 1067 px</span>
+                                <span className={pluginWebpEnabled ? 'text-emerald-600 dark:text-emerald-400 font-bold' : ''}>
+                                  {pluginWebpEnabled ? '-60.7% saved' : '0% saved'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Editorial Box showing Author Avatar in WebP */}
+                      <div className="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-850/70 border border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full overflow-hidden border border-neutral-300 dark:border-neutral-700 bg-neutral-200 shrink-0">
+                            <picture>
+                              {pluginWebpEnabled && (
+                                <source srcSet="/Optiweb.webp" type="image/webp" />
+                              )}
+                              <img
+                                src={pluginWebpEnabled ? '/Optiweb.webp' : '/Optiweb.jpg'}
+                                alt="Elena Vance"
+                                className="w-full h-full object-cover"
+                              />
+                            </picture>
+                          </div>
+                          <div>
+                            <div className="font-bold text-neutral-900 dark:text-white">
+                              Curated by Elena Vance
+                            </div>
+                            <div className="text-neutral-500 text-[11px]">
+                              Lead Architecture Editor · Verified WebP Fast Delivery
+                            </div>
                           </div>
                         </div>
 
-                        <div className="absolute bottom-2.5 right-2.5 sm:bottom-4 sm:right-4 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono bg-black/80 text-white backdrop-blur-md border border-neutral-700/50">
-                          {pluginWebpEnabled ? (
-                            <span className="flex items-center gap-1.5 text-emerald-300 font-semibold">
-                              <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                              <span>3.7× Faster Transfer</span>
-                            </span>
-                          ) : (
-                            <span className="flex items-center gap-1.5 text-amber-300 font-semibold">
-                              <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                              <span>Uncompressed Payload</span>
-                            </span>
-                          )}
+                        <div className="font-mono text-[11px] text-neutral-500 bg-white dark:bg-neutral-800 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                          {pluginWebpEnabled
+                            ? '✓ 4/4 images served as WebP'
+                            : '⚠ 4/4 images served as uncompressed JPEG'}
                         </div>
                       </div>
 
                       {/* Speed Benchmark Cards */}
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-1 sm:pt-2">
                         <div className="p-3 sm:p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700">
-                          <div className="text-[11px] sm:text-xs text-neutral-500">Image Transfer Payload</div>
+                          <div className="text-[11px] sm:text-xs text-neutral-500">Total Page Image Transfer</div>
                           <div className="text-base sm:text-lg font-bold font-mono text-neutral-900 dark:text-white mt-0.5">
-                            {pluginWebpEnabled ? '123 KB' : '313 KB'}
+                            {pluginWebpEnabled ? '492 KB (4 WebP Files)' : '1,252 KB (4 JPEGs)'}
                           </div>
                           <div className={`text-[11px] sm:text-xs font-mono mt-0.5 ${pluginWebpEnabled ? 'text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-neutral-400'}`}>
-                            {pluginWebpEnabled ? '-190 KB (-60.7%)' : 'Full JPEG Weight'}
+                            {pluginWebpEnabled ? '-760 KB Total Bandwidth Saved' : 'Full JPEG Weight'}
                           </div>
                         </div>
 
@@ -639,26 +869,70 @@ add_action('send_headers', function() {
               {inspectorTab === 'network' && (
                 <div className="p-6 rounded-2xl bg-neutral-900 text-neutral-200 font-mono text-xs space-y-5 overflow-x-auto shadow-inner">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-800 text-neutral-400 text-xs">
-                    <span>HTTP Network Transaction Inspector</span>
+                    <span>HTTP Network Transaction Inspector · All Images Across Website</span>
                     <span>Browser: Chrome 134 / WebP Supported</span>
                   </div>
 
-                  <div className="space-y-3">
-                    <div>
-                      <span className="text-emerald-400">Request URL:</span>{' '}
-                      <span className="text-neutral-100">
-                        https://my-wordpress-site.com/wp-content/uploads/
-                        {pluginWebpEnabled ? 'Optiweb.webp' : 'Optiweb.jpg'}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-emerald-400">Request Method:</span> GET · <span className="text-emerald-400">Status Code:</span>{' '}
-                      <span className="text-emerald-300">200 OK (from disk cache)</span>
+                  <div className="space-y-4">
+                    {/* All 4 requests table */}
+                    <div className="space-y-2">
+                      <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">
+                        Active Image Requests Captured (Site-Wide)
+                      </div>
+                      <div className="space-y-1.5 font-mono text-[11px]">
+                        <div className="flex items-center justify-between p-2 rounded bg-neutral-800/60 border border-neutral-700/40">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            <span className="text-white font-medium">Optiweb.webp (Hero Living Room)</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-neutral-300">
+                            <span className="text-emerald-400 font-bold">200 OK</span>
+                            <span>{pluginWebpEnabled ? 'image/webp · 123 KB' : 'image/jpeg · 313 KB'}</span>
+                            <span className="text-neutral-400">16ms</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between p-2 rounded bg-neutral-800/60 border border-neutral-700/40">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            <span className="text-white font-medium">penthouse-suite.webp (Master Bedroom)</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-neutral-300">
+                            <span className="text-emerald-400 font-bold">200 OK</span>
+                            <span>{pluginWebpEnabled ? 'image/webp · 123 KB' : 'image/jpeg · 313 KB'}</span>
+                            <span className="text-neutral-400">14ms</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between p-2 rounded bg-neutral-800/60 border border-neutral-700/40">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            <span className="text-white font-medium">penthouse-kitchen.webp (Marble Dining)</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-neutral-300">
+                            <span className="text-emerald-400 font-bold">200 OK</span>
+                            <span>{pluginWebpEnabled ? 'image/webp · 123 KB' : 'image/jpeg · 313 KB'}</span>
+                            <span className="text-neutral-400">12ms</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between p-2 rounded bg-neutral-800/60 border border-neutral-700/40">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            <span className="text-white font-medium">luxe-logo.webp (Header Site Logo)</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-neutral-300">
+                            <span className="text-emerald-400 font-bold">200 OK</span>
+                            <span>{pluginWebpEnabled ? 'image/webp · 18 KB' : 'image/png · 48 KB'}</span>
+                            <span className="text-neutral-400">8ms</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
                     <div className="pt-3 border-t border-neutral-800 space-y-1.5">
                       <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">
-                        Response Headers
+                        Response Headers for Delivered Images
                       </div>
                       <div>
                         <span className="text-neutral-400">Content-Type:</span>{' '}
@@ -668,7 +942,7 @@ add_action('send_headers', function() {
                       </div>
                       <div>
                         <span className="text-neutral-400">Content-Length:</span>{' '}
-                        <span>{pluginWebpEnabled ? '125,952 bytes (123 KB)' : '320,512 bytes (313 KB)'}</span>
+                        <span>{pluginWebpEnabled ? '125,258 bytes (123 KB)' : '319,583 bytes (313 KB)'}</span>
                       </div>
                       <div>
                         <span className="text-neutral-400">Vary:</span> <span>Accept, Accept-Encoding</span>
@@ -677,9 +951,9 @@ add_action('send_headers', function() {
                         <span className="text-neutral-400">Cache-Control:</span> <span>public, max-age=31536000, immutable</span>
                       </div>
                       <div>
-                        <span className="text-neutral-400">X-OptiWebP-Optimization:</span>{' '}
+                        <span className="text-neutral-400">X-OptiWebP-SiteWide-Buffer:</span>{' '}
                         <span className={pluginWebpEnabled ? 'text-emerald-400 font-bold' : 'text-neutral-500'}>
-                          {pluginWebpEnabled ? 'ACTIVE (VP8 Stream Engine)' : 'BYPASS (Original Fallback)'}
+                          {pluginWebpEnabled ? 'ACTIVE (100% of website images rewritten)' : 'BYPASS (Original Fallback)'}
                         </span>
                       </div>
                     </div>
@@ -707,7 +981,7 @@ add_action('send_headers', function() {
                           }`}
                         />
                         <span className={`text-xs font-bold ${pluginWebpEnabled ? 'text-emerald-400' : 'text-amber-400'}`}>
-                          {pluginWebpEnabled ? '16ms (Instant)' : '120ms (Waiting for transfer)'}
+                          {pluginWebpEnabled ? '16ms (Instant WebP)' : '120ms (Waiting for JPEG transfer)'}
                         </span>
                       </div>
                     </div>
@@ -720,16 +994,32 @@ add_action('send_headers', function() {
                 <div className="p-6 rounded-2xl bg-neutral-900 text-neutral-200 font-mono text-xs space-y-5 overflow-x-auto shadow-inner">
                   <div className="flex items-center justify-between pb-3 border-b border-neutral-800 text-neutral-400 text-xs">
                     <span>WordPress Generated Front-End HTML Markup</span>
-                    <span className="text-emerald-400">Filter: the_content / wp_get_attachment_image</span>
+                    <span className="text-emerald-400">Site-Wide Output Buffer + the_content + wp_get_attachment_image</span>
                   </div>
 
                   {pluginWebpEnabled ? (
-                    <pre className="text-emerald-300 leading-relaxed overflow-x-auto text-xs">
-{`<!-- OptiWebP: Native Picture Tag with WebP Source & Legacy Fallback -->
+                    adminDeliveryMode === 'picture' ? (
+                      <pre className="text-emerald-300 leading-relaxed overflow-x-auto text-xs">
+{`<!-- OptiWebP: Site-Wide Picture Tag Rewriting with WebP Source & Legacy Fallback -->
+
+<!-- 1. Header Site Logo (Theme Template) -->
+<picture class="custom-logo-wrap">
+  <source srcset="https://my-site.com/wp-content/uploads/luxe-logo.webp" type="image/webp">
+  <img src="https://my-site.com/wp-content/uploads/luxe-logo.webp" alt="Luxe Logo" width="160" height="40" decoding="async">
+</picture>
+
+<!-- 2. Main Featured Hero Article Image -->
 <picture class="wp-block-image size-full">
-  <source srcset="https://my-site.com/wp-content/uploads/Optiweb.webp" type="image/webp">
+  <source 
+    srcset="https://my-site.com/wp-content/uploads/Optiweb-400x267.webp 400w,
+            https://my-site.com/wp-content/uploads/Optiweb-1024x683.webp 1024w,
+            https://my-site.com/wp-content/uploads/Optiweb.webp 1600w" 
+    sizes="(max-width: 1024px) 100vw, 1600px" 
+    type="image/webp"
+  >
   <img 
-    src="https://my-site.com/wp-content/uploads/Optiweb.jpg" 
+    src="https://my-site.com/wp-content/uploads/Optiweb.webp" 
+    data-orig-src="https://my-site.com/wp-content/uploads/Optiweb.jpg"
     alt="Modern Ocean Penthouse" 
     width="1600" 
     height="1067" 
@@ -738,14 +1028,65 @@ add_action('send_headers', function() {
     fetchpriority="high"
     class="wp-image-482"
   >
-</picture>`}
-                    </pre>
+</picture>
+
+<!-- 3. Photo Gallery Thumbnails (Gutenberg Gallery Block) -->
+<div class="wp-block-gallery columns-3">
+  <picture class="wp-block-image">
+    <source srcset="https://my-site.com/wp-content/uploads/penthouse-suite.webp" type="image/webp">
+    <img src="https://my-site.com/wp-content/uploads/penthouse-suite.webp" alt="Master Suite" loading="lazy" decoding="async">
+  </picture>
+  <picture class="wp-block-image">
+    <source srcset="https://my-site.com/wp-content/uploads/penthouse-kitchen.webp" type="image/webp">
+    <img src="https://my-site.com/wp-content/uploads/penthouse-kitchen.webp" alt="Kitchen" loading="lazy" decoding="async">
+  </picture>
+</div>`}
+                      </pre>
+                    ) : (
+                      <pre className="text-emerald-300 leading-relaxed overflow-x-auto text-xs">
+{`<!-- OptiWebP: Direct <img src="...webp"> URL Rewriting Mode (Site-Wide Direct Replacement) -->
+
+<!-- 1. Header Site Logo -->
+<img 
+  src="https://my-site.com/wp-content/uploads/luxe-logo.webp" 
+  data-orig-src="https://my-site.com/wp-content/uploads/luxe-logo.png" 
+  alt="Luxe Logo" 
+  width="160" 
+  height="40" 
+  decoding="async"
+>
+
+<!-- 2. Main Featured Hero Article Image -->
+<img 
+  src="https://my-site.com/wp-content/uploads/Optiweb.webp" 
+  srcset="https://my-site.com/wp-content/uploads/Optiweb-400x267.webp 400w,
+          https://my-site.com/wp-content/uploads/Optiweb-1024x683.webp 1024w,
+          https://my-site.com/wp-content/uploads/Optiweb.webp 1600w" 
+  sizes="(max-width: 1024px) 100vw, 1600px" 
+  data-orig-src="https://my-site.com/wp-content/uploads/Optiweb.jpg"
+  alt="Modern Ocean Penthouse" 
+  width="1600" 
+  height="1067" 
+  loading="lazy" 
+  decoding="async"
+  class="wp-image-482"
+>
+
+<!-- 3. Photo Gallery Thumbnails -->
+<img src="https://my-site.com/wp-content/uploads/penthouse-suite.webp" alt="Master Suite" loading="lazy" decoding="async">
+<img src="https://my-site.com/wp-content/uploads/penthouse-kitchen.webp" alt="Kitchen" loading="lazy" decoding="async">`}
+                      </pre>
+                    )
                   ) : (
                     <pre className="text-amber-300 leading-relaxed overflow-x-auto text-xs">
-{`<!-- WebP Delivery Disabled: Standard Uncompressed Image Tag -->
+{`<!-- WebP Delivery Disabled: Standard Uncompressed Image Tags Everywhere -->
+<img src="https://my-site.com/wp-content/uploads/luxe-logo.png" alt="Luxe Logo" width="160" height="40">
+
 <figure class="wp-block-image size-full">
   <img 
     src="https://my-site.com/wp-content/uploads/Optiweb.jpg" 
+    srcset="https://my-site.com/wp-content/uploads/Optiweb-400x267.jpg 400w,
+            https://my-site.com/wp-content/uploads/Optiweb.jpg 1600w" 
     alt="Modern Ocean Penthouse" 
     width="1600" 
     height="1067" 
@@ -756,9 +1097,12 @@ add_action('send_headers', function() {
                   )}
 
                   <div className="p-4 rounded-xl bg-neutral-800 text-xs text-neutral-300 space-y-1.5 leading-relaxed">
-                    <div className="font-bold text-white">How this works on WordPress:</div>
+                    <div className="font-bold text-white flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>How OptiWebP converts 100% of images all over your WordPress site:</span>
+                    </div>
                     <p>
-                      When WebP is enabled, the plugin automatically wraps image elements inside high-efficiency HTML5 <code className="text-emerald-400">&lt;picture&gt;</code> elements. Browsers that support WebP (99.2% of web traffic worldwide) instantly load the lightweight WebP format. Older browsers seamlessly fall back to the original file with zero broken links.
+                      Unlike older plugins that only hook <code className="text-emerald-400">the_content</code> (missing header logos, footer widgets, theme templates, and Elementor blocks), OptiWebP uses a high-speed PHP output buffer on <code className="text-emerald-400">template_redirect</code> combined with native <code className="text-emerald-400">wp_calculate_image_srcset</code> filters. Every single image tag across the whole website is intercepted and delivered as WebP!
                     </p>
                   </div>
                 </div>
